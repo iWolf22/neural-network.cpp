@@ -24,7 +24,7 @@ It takes one input datum (e.g. one image) and outputs a prediction.
 - Let the superscript $^{(L)}$ for $L \in \{0, 1, 2, 3\}$ represent the $L$-th layer of the network (our network has 4 layers).
 - Let the subscript $_i$ for $i \in \mathbb{N}$ represent the $i$-th vertically stacked neuron for a particular layer (natural numbers include 0).
 
-- Let $a_i^{(L)} \in \mathbb{[0, 1]}$ be the activation in the $i$-th neuron the $L$-th layer of the network.
+- Let $a_i^{(L)} \in [0, 1]$ be the activation in the $i$-th neuron the $L$-th layer of the network.
 - Let $w_{i,j}^{(L)} \in \mathbb{R}$ be the weight between:
     - The $j$-th neuron in layer $L - 1$
     - And the $i$-th neuron in layer $L$
@@ -63,7 +63,7 @@ $$
 
 where $n = n_{L-1}$. We also define $z_i^{(L)} = \sum_{j = 0}^{n-1} w_{i,j}^{(L)}a_j^{(L-1)} + b_i^{(L)}$.
 
-Observe that can represent the computation for subsequent activations using matrix operations,
+Observe that we can represent the computation for subsequent activations using matrix operations,
 
 $$
 \begin{align*}
@@ -130,12 +130,13 @@ graph TD
 
 ### Back-propagation calculus
 
-Solving for various terms that can we sub into the equations below.
+Solving for various terms that we can use to substitute into the equations below.
 
 - $\frac{\partial C_x}{\partial a_i^{(L)}} = 2(a_i^{(L)} - y_i)$
 - $\frac{\partial a_i^{(L)}}{\partial z_i^{(L)}} = \sigma^\prime(z_i^{(L)}) = \frac{e^{-z_i^{(L)}}}{(1 + e^{-z_i^{(L)}})^2}$
-- $\frac{\partial z_i^{(L)}}{\partial w_{i,j}^{(L)}} = a^{L-1}_j$
+- $\frac{\partial z_i^{(L)}}{\partial w_{i,j}^{(L)}} = a_j^{(L-1)}$
 - $\frac{\partial z_i^{(L)}}{\partial b_{i}^{(L)}} = 1$
+- $\frac{\partial z_i^{(L)}}{\partial a_j^{(L-1)}} = w_{i,j}^{(L)}$
 
 Using the chain-rule we have that for a particular training example $x \in [0, 1]^{28 \times 28}$,
 
