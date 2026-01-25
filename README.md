@@ -90,3 +90,9 @@ $$
 & = \sigma(\textbf{W}\textbf{a}^{(L-1)} + \textbf{b}^{(L)})
 \end{align*}
 $$
+
+### Defining cost function
+
+The cost function for a particular training example $x \in [0, 1]^{28 \times 28}$ is
+
+$$C_x = \sum^{n_L-1}_{i=0} (a_i^{(L)} - y_i)^2$$
