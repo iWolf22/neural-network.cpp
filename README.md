@@ -19,13 +19,13 @@ $$f_\theta: x \mapsto \hat{y}$$
 
 It takes one input datum (e.g. one image) and outputs a prediction.
 
-### Defining the network function
+### Defining activation
 
 - Let the superscript $^{(L)}$ for $L \in \{0, 1, 2, 3\}$ represent the $L$-th layer of the network (our network has 4 layers).
 - Let the subscript $_i$ for $i \in \mathbb{N}$ represent the $i$-th vertically stacked neuron for a particular layer (natural numbers include 0).
 
-- Let $a_i^{(L)}$ be the activation in the $i$-th neuron the $L$-th layer of the network.
-- Let $w_{i,j}^{(L)}$ be the weight between:
+- Let $a_i^{(L)} \in \mathbb{[0, 1]}$ be the activation in the $i$-th neuron the $L$-th layer of the network.
+- Let $w_{i,j}^{(L)} \in \mathbb{R}$ be the weight between:
     - The $j$-th neuron in layer $L - 1$
     - And the $i$-th neuron in layer $L$
 
@@ -47,7 +47,46 @@ graph LR
     a_k2 -->|w₂,₂⁽ᴸ⁾| a_j2
 ```
 
-- Let $b_i^{(L)}$ be the bias for neuron $i$ in layer $L$
-- Let $\sigma(x) = \frac{1}{1 + e^{-x}}$ be our sigmoid function
+- Let $b_i^{(L)} \in \mathbb{R}$ be the bias for neuron $i$ in layer $L$.
+- Let $\sigma(x) = \frac{1}{1 + e^{-x}}$ be our sigmoid function with domain and range, $\sigma: \mathbb{R} \mapsto [0, 1]$.
 
-Now we can rigorously define
+Now we can rigorously define each activation,
+
+$$
+\begin{align*}
+    a_i^{(L)} & = \sigma(w_{i,0}^{(L)}a_0^{(L-1)} + w_{i,1}^{(L)}a_1^{(L-1)} + ... + w_{i,n-1}^{(L)}a_{n-1}^{(L-1)} + b_i^{(L)}) \\
+              & = \sigma\bigg(\sum_{j = 0}^{n-1} w_{i,j}^{(L)}a_j^{(L-1)} + b_i^{(L)}\bigg) \\
+              & = \sigma(z_i^{(L)})
+\end{align*}
+$$
+
+where $n$ is the number of neurons in the $L-1$ layer and $z_i^{(L)} = \sum_{j = 0}^{n-1} w_{i,j}^{(L)}a_j^{(L-1)} + b_i^{(L)}$.
+
+Observe that can represent the computation for subsequent activations using matrix operations,
+
+$$
+\begin{align*}
+\mathbf{a}^{(L)} & = \sigma \left(
+\begin{bmatrix}
+	w_{0,0}^{(L)} & w_{0,1}^{(L)} & \cdots & w_{0,n-1}^{(L)} \\
+	w_{1,0}^{(L)} & w_{1,1}^{(L)} & \cdots & w_{1,n-1}^{(L)} \\
+	\vdots        & \vdots        & \ddots & \vdots          \\
+	w_{i,0}^{(L)} & w_{i,1}^{(L)} & \cdots & w_{i,n-1}^{(L)}
+\end{bmatrix}
+\begin{bmatrix}
+	a_{0}^{(L-1)} \\
+	a_{1}^{(L-1)} \\
+	\vdots        \\
+	a_{n-1}^{(L-1)}
+\end{bmatrix}
++
+\begin{bmatrix}
+	b_{0}^{(L)} \\
+	b_{1}^{(L)} \\
+	\vdots      \\
+	b_{i}^{(L)}
+\end{bmatrix}
+\right) \\
+& = \sigma(\textbf{W}\textbf{a}^{(L-1)} + \textbf{b}^{(L)})
+\end{align*}
+$$
