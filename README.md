@@ -182,3 +182,13 @@ $$
 \vdots
 \end{bmatrix}
 $$
+
+# Building the project
+
+```bash
+mkdir build && cd build
+
+cmake ..
+
+cmake --build .
+```
