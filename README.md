@@ -186,9 +186,9 @@ $$
 # Building the project
 
 ```bash
-mkdir build && cd build
+mkdir build
 
-cmake ..
+cmake --preset=default
 
-cmake --build .
+cmake --build build
 ```

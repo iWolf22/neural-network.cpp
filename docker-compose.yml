@@ -1,0 +1,9 @@
+services:
+    neural-network:
+        image: neural-network-image:latest
+        container_name: neural-network-container
+        build: .
+        volumes:
+            - .:/workspace
+        stdin_open: true
+        tty: true
