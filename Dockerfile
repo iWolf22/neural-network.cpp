@@ -1,6 +1,5 @@
-FROM ubuntu:jammy
+FROM ubuntu:resolute
 
-# Install build tools
 RUN apt-get update \
     && apt-get install -y \
        build-essential \

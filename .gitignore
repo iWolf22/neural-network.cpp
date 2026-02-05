@@ -1,2 +1,5 @@
 # Build folder with CMake and vcpkg files
 build/
+
+# Data folder with the dataset
+data/

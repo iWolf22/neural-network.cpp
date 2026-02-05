@@ -1,7 +1,8 @@
+#include "utils/images.h"
+
 #include <iostream>
 
-using std::cout;
-
-int main(int argc, char* argv[]) {
-    cout << "Hello World\n";
+int main(int argc, char *argv[]) {
+    Images image = Images(ImageType::TESTING);
+    std::cout << image << std::endl;
 }

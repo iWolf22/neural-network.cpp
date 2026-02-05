@@ -186,6 +186,10 @@ $$
 # Building the project
 
 ```bash
+docker compose up
+
+docker container exec -it neural-network-container /bin/bash
+
 mkdir build
 
 cmake --preset=default
