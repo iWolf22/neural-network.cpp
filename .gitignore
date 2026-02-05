@@ -3,3 +3,6 @@ build/
 
 # Data folder with the dataset
 data/
+
+# Local vscode configuration
+.vscode/
