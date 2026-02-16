@@ -1,15 +1,15 @@
 #pragma once
 
+#include "matrix.h"
+
 #include <cstddef>
 #include <cstdint>
 #include <filesystem>
 #include <fstream>
 #include <iterator>
 #include <memory>
-#include <utility>
-
-#include "utils/matrix.h"
 #include <ostream>
+#include <utility>
 
 enum class ImageType {
     TRAINING,
