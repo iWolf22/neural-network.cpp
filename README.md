@@ -170,7 +170,7 @@ $$
 \frac{\partial C}{\partial b_i^{(L)}} = \frac{\partial}{\partial b_i^{(L)}} \left( \frac{1}{|B|} \sum_{x \in B} C_x \right) = \frac{1}{|B|} \sum_{x \in B} \frac{\partial C_x}{\partial b_i^{(L)}}
 $$
 
-## Gradient vector
+### Gradient vector
 
 We now create our gradient vector filled with all the partial derivatives of the weights and biases and iteratively apply gradient descent,
 
@@ -183,7 +183,9 @@ $$
 \end{bmatrix}
 $$
 
-# Building the project
+## Commands
+
+### Building and Running the Project
 
 ```bash
 docker compose up
@@ -195,4 +197,25 @@ mkdir build
 cmake --preset=default
 
 cmake --build build
+
+./build/neural-network
+
+./build/test_main
 ```
+
+### Generating the UML Diagrams
+
+```bash
+# generate build files and compile_commands.json file for code analyzers
+cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+# generates the plant uml markdown
+clang-uml
+
+# generates the encoding to be added to www.plantuml.com/plantuml/svg/<encoding>
+plantuml -encodeurl docs/*.puml
+```
+
+## UML Diagram
+
+![UML Diagram of the Neural Network](https://www.plantuml.com/plantuml/svg/dLPRJzim57xFh_3wWC92IXpduaHGYKqCLG8UHj-Zj35jH9jKSO2nZVy-EsuIvsAe1eWsFkTyv_QTuwosCQLWGiia35_8gioBYyLi0c8AlaUM1LtFTXtaGXWWzYsmFCVHLfM9IWp-Q56alH-q1F0ofkagIXzfMP1uTx7Qn8Na0o77muuR8Dy9s2_q499zZ8XxFkxYiaX_TUA65e88id021oFikcuGo9WZOePf222Tfhz9L88YVwLduF2mohVq58JW9KyJRJhLZ7nFYfYLIp-Lz6Lrhhq09qTfhlACbanVV78hxeBxr5kXCD0C7jVmc1N4v0PH0tCGcBigAtxUxR9cSgI1_hj6ikSTcCntyPeitlQagQhbGGVY8F1mWB3b1wmfM2YhfAoeYvzNy_lv_Ossk7vOyCyQ_qUwxSC7q4QMw_c13LdFVMGxClnGok3dTrStrm_QxTMtwzk7bX9LyBI5njLFm2W4RVRd82JpOKpC-I1GzAOI8ENVef9zFHF5V6H9q3TQabqOxkDo0vAuZACaBS0bc9o_viKJtSShSiwF9nt-BCawpVHUwwEq55mPDFyvpKfay_QJB56RcMjIHhiiPMSyD1wIAlv3qqUpE6doQ6BcDCugKBtk7E1F5Ph4HevNJ_g0gsqMd6mVaxZHDQkeQUKxYtUaON8_RCtSnakoFKgpfdxhfGgX3QM_NRWYZafvnxYU0v73_liUidni8zZPCKDnRsy9UeNXBOzwIvBgkSN742FRXvxl8yTdf6Iyb_57n0BVgEh5Ckb5hXbLUGv9Opd7Ef8kczhnGRQB0f-jIijYkz8BV8JbyHaHy_6f5z-NIrtqkGlFM9QN6rAqB5Zc-ROr-zgdEUWKIbwjXg6V3eQXsQBouI4IaJ2Fu3KZ4icFK3uxF5zdoI9UDwOc8tmILQNNsqFwbEwZ3PEGWhR7dEOIgQF1t9Xfbf1V4Xi5irdgmWENT8hHeVu8NXLvk-hhZFeC43d95BGypsEB7DkkRTdGmrQNWWDnJN7bDPkRflhT8GJrRQKfz_9qEbFVHaTOZLmodrgDlgDyxcjiR9IxOJhzErE_l2X7tZGDzHMdj6gwC1P92CGAqPJ3_QdJKQkcccEq-i3NJ7r9Cy88QgljcrJ7NYIPlJo8_uyYZzyHA6CzgL7QATV-0G00)

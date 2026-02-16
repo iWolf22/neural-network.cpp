@@ -1,4 +1,4 @@
-FROM ubuntu:resolute
+FROM ubuntu:noble
 
 RUN apt-get update \
     && apt-get install -y \
@@ -11,6 +11,11 @@ RUN apt-get update \
        unzip \
        tar \
        pkg-config \
+       plantuml \
+       software-properties-common \
+    && add-apt-repository -y ppa:bkryza/clang-uml \
+    && apt-get update \
+    && apt-get install -y clang-uml \
     && rm -rf /var/lib/apt/lists/*
 
 # Install vcpkg

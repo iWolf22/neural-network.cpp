@@ -1,0 +1,12 @@
+# Run from /workspace in Ubuntu container after: cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+compilation_database_dir: build
+output_directory: docs
+diagrams:
+    class_diagram:
+        type: class
+        glob:
+            - include/**/*.h
+            - src/**/*.cpp
+        include:
+            namespaces:
+                - "" # global namespace (this project uses no namespaces)
