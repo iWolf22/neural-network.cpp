@@ -188,18 +188,22 @@ $$
 ### Building and Running the Project
 
 ```bash
+# creates a reproducible environment to build and run code
 docker compose up
 
+# gets a bash shell in the container
 docker container exec -it neural-network-container /bin/bash
 
+# holds all build artifacts
 mkdir build
 
-cmake --preset=default
+# prepare the project so it can be built
+cmake --preset default
 
+# compiling the code
 cmake --build build
 
 ./build/neural-network
-
 ./build/testing-suite
 ```
 
