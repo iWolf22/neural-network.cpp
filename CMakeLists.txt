@@ -5,31 +5,32 @@ project(neural-network
     LANGUAGES CXX
 )
 
-# Set C++ standard to C++23
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-# Compiler flags: enable all warnings and debug symbols
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g")
-
-# Source files
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g") # Compiler flags: enable all warnings and debug symbols
 set(SOURCES
-    src/main.cpp
     src/images.cpp
+)
+set(TEST_SOURCES
+    tests/matrix_test.cpp
+    tests/images_test.cpp
 )
 
 # Neural network executable
-add_executable(${PROJECT_NAME} ${SOURCES})
-
-# Include directories
+add_executable(${PROJECT_NAME} src/main.cpp ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Test executable
 find_package(GTest CONFIG REQUIRED)
-add_executable(test_main tests/test_main.cpp)
-target_link_libraries(test_main PRIVATE GTest::gtest GTest::gtest_main)
+
+# GTest executable
+add_executable(testing-suite ${SOURCES} ${TEST_SOURCES})
+target_include_directories(testing-suite PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(testing-suite PRIVATE GTest::gtest GTest::gtest_main)
 enable_testing()
-add_test(NAME MainTest COMMAND test_main)
+add_test(NAME MainTest COMMAND testing-suite)

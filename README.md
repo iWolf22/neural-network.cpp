@@ -200,7 +200,7 @@ cmake --build build
 
 ./build/neural-network
 
-./build/test_main
+./build/testing-suite
 ```
 
 ### Generating the UML Diagrams
