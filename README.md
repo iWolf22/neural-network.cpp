@@ -98,6 +98,8 @@ The cost function for a particular training example $x \in [0, 1]^{28 \times 28}
 
 $$C_x = \sum^{n_L-1}_{i=0} (a_i^{(L)} - y_i)^2$$
 
+where $L$ is the last layer.
+
 Let $T \subsetneq [0, 1]^{28 \times 28}$ be the training data, then for some batch of the training data $B \subsetneq T$ we have the cost function with respect to the training batch as,
 
 $$C = \frac{1}{|B|}\sum_{x \in B} C_x$$
@@ -189,7 +191,7 @@ $$
 
 ```bash
 # creates a reproducible environment to build and run code
-docker compose up
+docker compose up -d
 
 # gets a bash shell in the container
 docker container exec -it neural-network-container /bin/bash
