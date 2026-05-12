@@ -85,9 +85,7 @@ void Images::get_mnist_filepaths(ImageType image_type, const path &data_dir) {
 }
 
 ifstream Images::open_file(FileType file_type) const {
-    ifstream file(file_type == FileType::IMAGES ? images_filename_
-                                                : labels_filename_,
-                  std::ios::binary);
+    ifstream file(file_type == FileType::IMAGES ? images_filename_ : labels_filename_, std::ios::binary);
     file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
     return file;
@@ -101,23 +99,17 @@ uint32_t Images::cols() const { return cols_; }
 
 const_iterator Images::begin() const { return const_iterator(*this); }
 
-const_iterator Images::end() const {
-    return const_iterator(*this, ImagesEndTag{});
-}
+const_iterator Images::end() const { return const_iterator(*this, ImagesEndTag{}); }
 
 const_iterator::const_iterator(const Images &owner)
-    : owner_{owner}, images_file_{owner.open_file(FileType::IMAGES)},
-      labels_file_{owner.open_file(FileType::LABELS)},
-      labelled_image_{
-          LabelledImage(Matrix<uint8_t>(owner.rows(), owner.cols()), 0)},
-      index_{} {
+    : owner_{owner}, images_file_{owner.open_file(FileType::IMAGES)}, labels_file_{owner.open_file(FileType::LABELS)},
+      labelled_image_{LabelledImage(Matrix<uint8_t>(owner.rows(), owner.cols()), 0)}, index_{} {
     skip_headers();
     read_image();
 }
 
 const_iterator::const_iterator(const Images &owner, ImagesEndTag)
-    : owner_{owner}, labelled_image_{LabelledImage(Matrix<uint8_t>(0, 0), 0)},
-      index_{owner.size()} {}
+    : owner_{owner}, labelled_image_{LabelledImage(Matrix<uint8_t>(0, 0), 0)}, index_{owner.size()} {}
 
 void const_iterator::skip_headers() {
     images_file_.seekg(MNIST_IMAGE_HEADER_SIZE);
@@ -134,9 +126,7 @@ void const_iterator::read_image() {
             images_file_.read(reinterpret_cast<char *>(&image(i, j)), 1);
 }
 
-const LabelledImage &const_iterator::operator*() const {
-    return labelled_image_;
-}
+const LabelledImage &const_iterator::operator*() const { return labelled_image_; }
 
 const_iterator &const_iterator::operator++() {
     if (index_ < owner_.size() - 1)

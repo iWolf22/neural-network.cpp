@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <vector>
 
+/// @brief Optimized matrix that uses a continuous segment of memory
+/// @tparam T the datatype stored in the matrix
 template <typename T> class Matrix {
     std::vector<T> matrix_;
 

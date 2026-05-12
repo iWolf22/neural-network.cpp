@@ -28,8 +28,7 @@ class Images {
     std::filesystem::path images_filename_;
     std::filesystem::path labels_filename_;
 
-    void get_mnist_filepaths(ImageType image_type,
-                             const std::filesystem::path &data_dir);
+    void get_mnist_filepaths(ImageType image_type, const std::filesystem::path &data_dir);
 
   public:
     struct LabelledImage {
@@ -61,8 +60,7 @@ class Images {
         bool operator!=(const const_iterator &other) const;
     };
 
-    Images(ImageType image_type,
-           std::filesystem::path data_dir = "/workspace/data");
+    Images(ImageType image_type, std::filesystem::path data_dir = "/workspace/data");
 
     std::ifstream open_file(FileType file_type) const;
 
@@ -74,6 +72,5 @@ class Images {
     const_iterator end() const;
 };
 
-std::ostream &operator<<(std::ostream &os,
-                         const Images::LabelledImage &labelled_image);
+std::ostream &operator<<(std::ostream &os, const Images::LabelledImage &labelled_image);
 std::ostream &operator<<(std::ostream &os, const Images &images);
