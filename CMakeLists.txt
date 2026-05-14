@@ -11,6 +11,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g") # Compiler flags: enable all warnings and debug symbols
 set(SOURCES
     src/images.cpp
+    src/dense_layer.cpp
+    src/neural_network.cpp
+    src/utilities.cpp
 )
 set(TEST_SOURCES
     tests/matrix_test.cpp
