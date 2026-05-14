@@ -16,10 +16,14 @@ enum class ImageType {
     TESTING,
 };
 
-enum class FileType { IMAGES, LABELS };
+enum class FileType {
+    IMAGES,
+    LABELS,
+};
 
 struct ImagesEndTag;
 
+/// @brief API to read the handwritten digits and their respective labels from the MNIST dataset
 class Images {
     size_t size_{};
     uint32_t rows_{};

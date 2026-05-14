@@ -8,12 +8,12 @@
 /// @return $$x \in [-1, 1]$$
 double random_value();
 
-/// @brief $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
+/// @brief $$\sigma(x) = \tfrac{1}{1 + e^{-x}} = \tfrac{e^x}{e^x + 1}$$
 double sigmoid(double x);
 
 Vector sigmoid(const Vector &z);
 
-/// @brief $$\sigma'(z) = \sigma(z)\,(1 - \sigma(z))$$
+/// @brief $$\sigma'(z) = \tfrac{e^{-z}}{(1 + e^{-z})^2} = \sigma(z)(1 - \sigma(z))$$
 double sigmoid_derivative(double z);
 
 Vector operator*(const Matrix<double> &A, const Vector &b);

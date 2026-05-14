@@ -4,6 +4,7 @@
 #include <random>
 #include <stdexcept>
 
+using std::exp;
 using std::runtime_error;
 
 double random_value() {
@@ -14,15 +15,18 @@ double random_value() {
 
 double sigmoid(double x) {
     if (x >= 0.0)
-        return 1.0 / (1.0 + std::exp(-x));
-    const double t = std::exp(x);
-    return t / (1.0 + t);
+        return 1.0 / (1.0 + exp(-x));
+
+    const double t = exp(x);
+    return t / (t + 1.0);
 }
 
 Vector sigmoid(const Vector &z) {
     Vector result(z.size());
+
     for (size_t i = 0; i < z.size(); ++i)
         result[i] = sigmoid(z[i]);
+
     return result;
 }
 
