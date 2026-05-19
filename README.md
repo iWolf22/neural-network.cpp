@@ -67,7 +67,7 @@ Observe that we can represent the computation for subsequent activations using m
 
 $$
 \begin{align*}
-\mathbf{a}^{(L)} & = \sigma \left(
+\textbf{a}^{(L)} & = \sigma \left(
 \begin{bmatrix}
 	w_{0,0}^{(L)} & w_{0,1}^{(L)} & \cdots & w_{0,n-1}^{(L)} \\
 	w_{1,0}^{(L)} & w_{1,1}^{(L)} & \cdots & w_{1,n-1}^{(L)} \\
@@ -94,7 +94,7 @@ $$
 
 ### Defining the cost function
 
-The cost function for a particular training example $x \in [0, 1]^{28 \times 28}$ is,
+The cost function for a particular training example $x \in [0, 1]^{28 \times 28}$ will be defined by the Mean Squared Error (MSE),
 
 $$C_x = \sum^{n_L-1}_{i=0} (a_i^{(L)} - y_i)^2$$
 
@@ -184,6 +184,10 @@ $$
 \vdots
 \end{bmatrix}
 $$
+
+### Batch Processing
+
+Fill in...
 
 ## Commands
 
