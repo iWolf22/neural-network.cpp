@@ -1,8 +1,8 @@
 #pragma once
 
-#include "aliases.h"
-#include "dense_layer.h"
-#include "matrix.h"
+#include "simple/dense_layer.h"
+#include "utils/aliases.h"
+#include "utils/matrix.h"
 
 #include <cstdint>
 #include <initializer_list>

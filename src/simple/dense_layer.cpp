@@ -1,5 +1,5 @@
-#include "dense_layer.h"
-#include "utilities.h"
+#include "simple/dense_layer.h"
+#include "utils/utilities.h"
 
 #include <stdexcept>
 

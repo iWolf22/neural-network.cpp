@@ -1,6 +1,6 @@
 #pragma once
 
-#include "matrix.h"
+#include "utils/matrix.h"
 
 #include <cstddef>
 #include <cstdint>

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "aliases.h"
-#include "matrix.h"
+#include "utils/aliases.h"
+#include "utils/matrix.h"
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#include "images.h"
-#include "neural_network.h"
+#include "simple/neural_network.h"
+#include "utils/images.h"
 
 #include <iostream>
 

@@ -1,4 +1,4 @@
-#include "utilities.h"
+#include "utils/utilities.h"
 
 #include <cmath>
 #include <random>

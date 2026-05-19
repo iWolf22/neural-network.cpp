@@ -10,14 +10,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g") # Compiler flags: enable all warnings and debug symbols
 set(SOURCES
-    src/images.cpp
-    src/dense_layer.cpp
-    src/neural_network.cpp
-    src/utilities.cpp
+    src/utils/images.cpp
+    src/utils/utilities.cpp
+    src/simple/dense_layer.cpp
+    src/simple/neural_network.cpp
 )
 set(TEST_SOURCES
-    tests/matrix_test.cpp
-    tests/images_test.cpp
+    tests/utils/matrix_test.cpp
+    tests/utils/images_test.cpp
 )
 
 # Neural network executable

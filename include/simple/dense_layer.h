@@ -1,7 +1,7 @@
 #pragma once
 
-#include "aliases.h"
-#include "matrix.h"
+#include "utils/aliases.h"
+#include "utils/matrix.h"
 
 /// @brief One layer in the neural network, $$^{(L)}$$ for
 /// $$L \in \{1, 2, 3, 4\}$$

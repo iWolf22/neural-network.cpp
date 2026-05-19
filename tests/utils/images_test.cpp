@@ -1,4 +1,4 @@
-#include "images.h"
+#include "utils/images.h"
 
 #include <cstdint>
 #include <gtest/gtest.h>
@@ -75,14 +75,12 @@ const vector<vector<uint8_t>> expected_testing_image_2 = {
 };
 // clang-format on
 
-void expect_image_matches(const Matrix<uint8_t> &image,
-                          const vector<vector<uint8_t>> &expected) {
+void expect_image_matches(const Matrix<uint8_t> &image, const vector<vector<uint8_t>> &expected) {
     ASSERT_EQ(image.rows(), expected.size());
     for (size_t r = 0; r < expected.size(); ++r) {
         ASSERT_EQ(image.cols(), expected[r].size()) << "row " << r;
         for (size_t c = 0; c < expected[r].size(); ++c)
-            EXPECT_EQ(expected[r][c], image(r, c))
-                << "row " << r << " col " << c;
+            EXPECT_EQ(expected[r][c], image(r, c)) << "row " << r << " col " << c;
     }
 }
 

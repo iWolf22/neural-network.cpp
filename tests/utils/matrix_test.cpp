@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include "utils/matrix.h"
 
 #include <cstddef>
 #include <gtest/gtest.h>
@@ -51,8 +51,7 @@ TEST_F(MatrixTest, OperatorParensAllowsWrite) {
 TEST_F(MatrixTest, RowMajorIndexingIsCorrect) {
     for (size_t r = 0; r < rows_; ++r)
         for (size_t c = 0; c < cols_; ++c)
-            EXPECT_EQ(matrix_(r, c), static_cast<int>(r * cols_ + c))
-                << "Mismatch at (" << r << ", " << c << ")";
+            EXPECT_EQ(matrix_(r, c), static_cast<int>(r * cols_ + c)) << "Mismatch at (" << r << ", " << c << ")";
 }
 
 TEST(MatrixValueTypeTest, DoubleMatrixWorks) {
