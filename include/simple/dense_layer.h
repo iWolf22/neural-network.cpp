@@ -3,8 +3,9 @@
 #include "utils/aliases.h"
 #include "utils/matrix.h"
 
-/// @brief One layer in the neural network, $$^{(L)}$$ for
-/// $$L \in \{1, 2, 3, 4\}$$
+namespace Simple {
+
+/// @brief One layer in the neural network, $$^{(L)}$$ for $$L \in \{1, 2, 3, 4\}$$
 class DenseLayer {
     /// @brief weights_(i, j) = $$w_{i,j}^{(L)}$$
     Matrix<double> weights_;
@@ -44,3 +45,5 @@ class DenseLayer {
     /// @return grad_input[i] = $$\tfrac{\partial C_x}{\partial a_i^{(L-1)}}$$
     Vector backward(const Vector &grad_output, double learning_rate);
 };
+
+} // namespace Simple

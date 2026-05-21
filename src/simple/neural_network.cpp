@@ -6,6 +6,8 @@
 using std::initializer_list;
 using std::runtime_error;
 
+namespace Simple {
+
 NeuralNetwork::NeuralNetwork(initializer_list<unsigned int> layer_sizes) {
     if (layer_sizes.size() < 2)
         throw runtime_error("Fewer than 2 layers in the neural network");
@@ -15,11 +17,8 @@ NeuralNetwork::NeuralNetwork(initializer_list<unsigned int> layer_sizes) {
     auto a = layer_sizes.begin();
     auto b = std::next(a);
 
-    while (b != layer_sizes.end()) {
+    for (; b != layer_sizes.end(); ++a, ++b)
         layers_.emplace_back(*a, *b);
-        ++a;
-        ++b;
-    }
 }
 
 Vector NeuralNetwork::forward(const Matrix<uint8_t> &input) {
@@ -58,3 +57,5 @@ void NeuralNetwork::backward(const Vector &grad_lost, double learning_rate) {
     for (; it != layers_.rend(); ++it)
         cur = it->backward(cur, learning_rate);
 }
+
+} // namespace Simple

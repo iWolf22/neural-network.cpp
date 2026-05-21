@@ -5,6 +5,8 @@
 
 using std::runtime_error;
 
+namespace Simple {
+
 DenseLayer::DenseLayer(size_t input_size, size_t output_size)
     : weights_(output_size, input_size), biases_(output_size), input_cache_(input_size), z_cache_(output_size) {
     randomize_weights();
@@ -12,17 +14,14 @@ DenseLayer::DenseLayer(size_t input_size, size_t output_size)
 }
 
 inline void DenseLayer::randomize_weights() {
-    for (size_t i = 0; i < weights_.rows(); ++i) {
-        for (size_t j = 0; j < weights_.cols(); ++j) {
+    for (size_t i = 0; i < weights_.rows(); ++i)
+        for (size_t j = 0; j < weights_.cols(); ++j)
             weights_(i, j) = random_value();
-        }
-    }
 }
 
 inline void DenseLayer::randomize_biases() {
-    for (size_t i = 0; i < biases_.size(); ++i) {
+    for (size_t i = 0; i < biases_.size(); ++i)
         biases_[i] = random_value();
-    }
 }
 
 Vector DenseLayer::forward(const Vector &input) {
@@ -77,3 +76,5 @@ inline void DenseLayer::update_biases(const Vector &grad_z, double learning_rate
     for (size_t i = 0; i < weights_.rows(); ++i)
         biases_[i] -= learning_rate * grad_z[i];
 }
+
+} // namespace Simple

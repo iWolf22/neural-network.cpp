@@ -8,8 +8,8 @@
 template <typename T> class Matrix {
     std::vector<T> matrix_;
 
-    const size_t rows_;
-    const size_t cols_;
+    size_t rows_;
+    size_t cols_;
 
   public:
     Matrix(size_t rows, size_t cols) : matrix_(rows * cols), rows_(rows), cols_(cols) {}

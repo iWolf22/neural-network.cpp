@@ -14,6 +14,8 @@ set(SOURCES
     src/utils/utilities.cpp
     src/simple/dense_layer.cpp
     src/simple/neural_network.cpp
+    src/batched/dense_layer.cpp
+    src/batched/neural_network.cpp
 )
 set(TEST_SOURCES
     tests/utils/matrix_test.cpp

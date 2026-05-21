@@ -8,6 +8,8 @@
 #include <initializer_list>
 #include <vector>
 
+namespace Simple {
+
 /// @brief Neural network for detecting handwritten digits
 class NeuralNetwork {
     /// @brief layers_[i] corresponds to layer $$^{(i+1)}$$
@@ -26,6 +28,8 @@ class NeuralNetwork {
     /// @brief Updates the weights and biases of the network
     /// @param input input datum, $$x \in [0, 1]^{28 \times 28}$$
     /// @param target true value, $$y \in \{0, 1, 2, ..., 9\}$$
-    /// @param learningRate gradient descent step size
-    void train(const Matrix<uint8_t> &input, uint8_t target, double learningRate);
+    /// @param learning_rate gradient descent step size
+    void train(const Matrix<uint8_t> &input, uint8_t target, double learning_rate);
 };
+
+} // namespace Simple
