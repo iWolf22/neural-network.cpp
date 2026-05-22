@@ -12,6 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g") # Compiler flags: enable all 
 set(SOURCES
     src/utils/images.cpp
     src/utils/utilities.cpp
+    src/utils/helper.cpp
     src/simple/dense_layer.cpp
     src/simple/neural_network.cpp
     src/batched/dense_layer.cpp

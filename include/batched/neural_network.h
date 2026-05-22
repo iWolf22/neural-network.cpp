@@ -12,15 +12,15 @@ namespace Batched {
 
 /// @brief Neural network for detecting handwritten digits
 class NeuralNetwork {
-    double learning_rate_;
-    size_t batch_size_;
-
     /// @brief layers_[i] corresponds to layer $$^{(i+1)}$$
     std::vector<DenseLayer> layers_;
 
     void backward(const Matrix<double> &grad_lost);
 
   public:
+    const double learning_rate_;
+    const size_t batch_size_;
+
     /// @param learning_rate gradient descent step size
     /// @param layer_sizes number of neurons in each layer
     NeuralNetwork(double learning_rate, size_t batch_size, std::initializer_list<unsigned int> layer_sizes);
