@@ -362,7 +362,7 @@ $$
 
 Accuracy of the neural network was **83.53%**.
 
-### Per-digit matrics
+### Per-digit metrics
 
 | Digit | Precision | Recall | F1 Score |
 | ----: | --------: | -----: | -------: |
