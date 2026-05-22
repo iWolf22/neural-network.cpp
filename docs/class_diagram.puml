@@ -3,6 +3,22 @@ class "std::vector<T>" as C_0015625435119362590644
 class C_0015625435119362590644 {
 __
 }
+class "std::vector<double>" as C_0011328605021903071752
+class C_0011328605021903071752 {
+__
+}
+class "std::initializer_list<unsigned int>" as C_0006535940101500632181
+class C_0006535940101500632181 {
+__
+}
+class "std::vector<Batched::DenseLayer>" as C_0001532721147218556527
+class C_0001532721147218556527 {
+__
+}
+class "std::vector<Simple::DenseLayer>" as C_0001629855720824355361
+class C_0001629855720824355361 {
+__
+}
 class "std::basic_ifstream<char>" as C_0013346845937494941633
 class C_0013346845937494941633 {
 __
@@ -17,9 +33,73 @@ class C_0011031316449483855599 {
 +cols() const : size_t
 +rows() const : size_t
 __
--cols_ : const size_t
+-cols_ : size_t
 -matrix_ : std::vector<T>
--rows_ : const size_t
+-rows_ : size_t
+}
+class "Batched::DenseLayer" as C_0009143452807276466611
+class C_0009143452807276466611 {
++DenseLayer(double learning_rate, size_t batch_size, size_t input_size, size_t output_size) : void
+..
++backward(const Matrix<double> & grad_output) : const Matrix<double>
++forward(const Matrix<double> & input) : const Matrix<double>
+-randomize_biases() : void
+-randomize_weights() : void
+__
+-batch_size_ : size_t
+-biases_ : Vector
+-input_cache_ : Matrix<double>
+-learning_rate_ : double
+-output_cache_ : Matrix<double>
+-weights_ : Matrix<double>
+}
+class "Batched::NeuralNetwork" as C_0001476549394442543180
+class C_0001476549394442543180 {
++NeuralNetwork(double learning_rate, size_t batch_size, std::initializer_list<unsigned int> layer_sizes) : void
+..
+-backward(const Matrix<double> & grad_lost) : void
++forward(const Matrix<double> & input) : Matrix<double>
++train(const Matrix<double> & input, const Matrix<double> & target) : void
+__
++batch_size_ : const size_t
+-layers_ : std::vector<DenseLayer>
++learning_rate_ : const double
+}
+class "Matrix<double>" as C_0012725496315910287568
+class C_0012725496315910287568 {
+__
+}
+class "Simple::DenseLayer" as C_0014205654046752636088
+class C_0014205654046752636088 {
++DenseLayer(size_t input_size, size_t output_size) : void
+..
++backward(const Vector & grad_output, double learning_rate) : Vector
+-compute_grad_input(const Vector & grad_z) const : Vector
+-compute_grad_z(const Vector & grad_output) const : Vector
++forward(const Vector & input) : Vector
+-randomize_biases() : void
+-randomize_weights() : void
+-update_biases(const Vector & grad_z, double learning_rate) : void
+-update_weights(const Vector & grad_z, double learning_rate) : void
+__
+-biases_ : Vector
+-input_cache_ : Vector
+-weights_ : Matrix<double>
+-z_cache_ : Vector
+}
+class "Simple::NeuralNetwork" as C_0014872220454591982094
+class C_0014872220454591982094 {
++NeuralNetwork(std::initializer_list<unsigned int> layer_sizes) : void
+..
+-backward(const Vector & grad_lost, double learning_rate) : void
++forward(const Matrix<uint8_t> & input) : Vector
++train(const Matrix<uint8_t> & input, uint8_t target, double learning_rate) : void
+__
+-layers_ : std::vector<DenseLayer>
+}
+class "Matrix<uint8_t>" as C_0011564134564763078231
+class C_0011564134564763078231 {
+__
 }
 enum "ImageType" as C_0006141899689380794598
 enum C_0006141899689380794598 {
@@ -49,10 +129,6 @@ __
 -rows_ : uint32_t
 -size_ : size_t
 }
-class "Matrix<uint8_t>" as C_0011564134564763078231
-class C_0011564134564763078231 {
-__
-}
 class "Images::LabelledImage" as C_0018183271677347124921
 class C_0018183271677347124921 {
 __
@@ -80,12 +156,36 @@ class "ImagesEndTag" as C_0018106665988252021680
 class C_0018106665988252021680 {
 __
 }
+C_0011328605021903071752 ..|> C_0015625435119362590644
+C_0001532721147218556527 ..> C_0009143452807276466611
+C_0001532721147218556527 ..|> C_0015625435119362590644
+C_0001629855720824355361 ..> C_0014205654046752636088
+C_0001629855720824355361 ..|> C_0015625435119362590644
 C_0011031316449483855599 o-- C_0015625435119362590644 : -matrix_
+C_0009143452807276466611 ..> C_0011031316449483855599
+C_0009143452807276466611 o-- C_0012725496315910287568 : -weights_
+C_0009143452807276466611 o-- C_0011328605021903071752 : -biases_
+C_0009143452807276466611 o-- C_0012725496315910287568 : -input_cache_
+C_0009143452807276466611 o-- C_0012725496315910287568 : -output_cache_
+C_0001476549394442543180 ..> C_0012725496315910287568
+C_0001476549394442543180 ..> C_0011031316449483855599
+C_0001476549394442543180 ..> C_0006535940101500632181
+C_0001476549394442543180 o-- C_0001532721147218556527 : -layers_
+C_0012725496315910287568 ..|> C_0011031316449483855599
+C_0014205654046752636088 o-- C_0012725496315910287568 : -weights_
+C_0014205654046752636088 o-- C_0011328605021903071752 : -biases_
+C_0014205654046752636088 o-- C_0011328605021903071752 : -input_cache_
+C_0014205654046752636088 o-- C_0011328605021903071752 : -z_cache_
+C_0014872220454591982094 ..> C_0011328605021903071752
+C_0014872220454591982094 ..> C_0006535940101500632181
+C_0014872220454591982094 ..> C_0011564134564763078231
+C_0014872220454591982094 ..> C_0011031316449483855599
+C_0014872220454591982094 o-- C_0001629855720824355361 : -layers_
+C_0011564134564763078231 ..|> C_0011031316449483855599
 C_0008888889749129124339 ..> C_0006141899689380794598
 C_0008888889749129124339 ..> C_0006912305679214687324
 C_0008888889749129124339 ..> C_0013346845937494941633
 C_0008888889749129124339 ..> C_0003253978380055969738
-C_0011564134564763078231 ..|> C_0011031316449483855599
 C_0018183271677347124921 --+ C_0008888889749129124339
 C_0018183271677347124921 o-- C_0011564134564763078231 : +image
 C_0003253978380055969738 --+ C_0008888889749129124339

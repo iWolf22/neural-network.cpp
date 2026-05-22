@@ -8,7 +8,7 @@ namespace Batched {
 /// @brief One layer in the neural network, $$^{(L)}$$ for $$L \in \{1, 2, 3, 4\}$$
 class DenseLayer {
     double learning_rate_;
-    unsigned int batch_size_;
+    size_t batch_size_;
 
     /// @brief weights_(i, j) = $$w_{i,j}^{(L)}$$
     Matrix<double> weights_;
