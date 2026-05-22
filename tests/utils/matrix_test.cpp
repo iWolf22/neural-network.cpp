@@ -70,3 +70,53 @@ TEST(MatrixValueTypeTest, UnsignedMatrixWorks) {
     EXPECT_EQ(m(0, 0), 0u);
     EXPECT_EQ(m(0, 2), 2u);
 }
+
+TEST(MatrixStorageTest, RectangularMatrixHasExpectedElementCount) {
+    Matrix<int> m(2, 5);
+
+    EXPECT_EQ(m.rows(), 2u);
+    EXPECT_EQ(m.cols(), 5u);
+
+    for (size_t r = 0; r < m.rows(); ++r)
+        for (size_t c = 0; c < m.cols(); ++c)
+            m(r, c) = static_cast<int>(r * 10 + c);
+
+    EXPECT_EQ(m(1, 4), 14);
+    EXPECT_EQ(m(0, 0), 0);
+}
+
+TEST(MatrixStorageTest, OverwritesPreserveOtherCells) {
+    Matrix<int> m(3, 3);
+    m(0, 0) = 1;
+    m(1, 1) = 2;
+    m(2, 2) = 3;
+
+    m(1, 1) = 99;
+
+    EXPECT_EQ(m(0, 0), 1);
+    EXPECT_EQ(m(1, 1), 99);
+    EXPECT_EQ(m(2, 2), 3);
+}
+
+TEST(MatrixConstAccessTest, ConstOperatorReturnsStoredValues) {
+    Matrix<double> m(2, 2);
+    m(0, 0) = 1.5;
+    m(1, 0) = 2.5;
+
+    const Matrix<double> &ref = m;
+
+    EXPECT_DOUBLE_EQ(ref(0, 0), 1.5);
+    EXPECT_DOUBLE_EQ(ref(1, 0), 2.5);
+}
+
+TEST(MatrixDimensionsTest, TallSkinnyMatrix) {
+    const Matrix<int> m(10, 1);
+    EXPECT_EQ(m.rows(), 10u);
+    EXPECT_EQ(m.cols(), 1u);
+}
+
+TEST(MatrixDimensionsTest, WideFlatMatrix) {
+    const Matrix<int> m(1, 20);
+    EXPECT_EQ(m.rows(), 1u);
+    EXPECT_EQ(m.cols(), 20u);
+}

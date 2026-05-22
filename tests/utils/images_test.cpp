@@ -2,6 +2,8 @@
 
 #include <cstdint>
 #include <gtest/gtest.h>
+#include <sstream>
+#include <string>
 #include <vector>
 
 using std::vector;
@@ -135,4 +137,44 @@ TEST(ImagesTests, CanIterateMultipleImages) {
     }
 
     EXPECT_EQ(count, 5);
+}
+
+TEST(ImagesStreamTest, LabelledImagePrintsLabel) {
+    Images images(ImageType::TESTING);
+    std::ostringstream out;
+    out << *images.begin();
+
+    const std::string text = out.str();
+    EXPECT_NE(text.find("Label:"), std::string::npos);
+    EXPECT_NE(text.find("7"), std::string::npos);
+}
+
+TEST(ImagesStreamTest, ImagesPrintsDatasetMetadata) {
+    Images images(ImageType::TESTING);
+    std::ostringstream out;
+    out << images;
+
+    const std::string text = out.str();
+    EXPECT_NE(text.find("Images"), std::string::npos);
+    EXPECT_NE(text.find("Size: 10000"), std::string::npos);
+    EXPECT_NE(text.find("Rows: 28"), std::string::npos);
+    EXPECT_NE(text.find("Cols: 28"), std::string::npos);
+}
+
+TEST(ImagesIteratorTest, EndIteratorIsNotEqualToBegin) {
+    Images images(ImageType::TESTING);
+
+    EXPECT_NE(images.begin(), images.end());
+}
+
+TEST(ImagesIteratorTest, IncrementMovesThroughImages) {
+    Images images(ImageType::TESTING);
+    const_iterator it = images.begin();
+
+    const uint8_t first_label = (*it).label;
+    ++it;
+
+    ASSERT_NE(it, images.end());
+    EXPECT_NE(first_label, (*it).label);
+    EXPECT_NE(images.begin(), it);
 }

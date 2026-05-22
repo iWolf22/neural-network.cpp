@@ -21,6 +21,11 @@ set(SOURCES
 set(TEST_SOURCES
     tests/utils/matrix_test.cpp
     tests/utils/images_test.cpp
+    tests/utils/utilities_test.cpp
+    tests/simple/dense_layer_test.cpp
+    tests/simple/neural_network_test.cpp
+    tests/batched/dense_layer_test.cpp
+    tests/batched/neural_network_test.cpp
 )
 
 # Neural network executable
