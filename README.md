@@ -403,6 +403,7 @@ Accuracy of the neural network was **83.53%**.
 - **clang-uml** - Auto generated PlantUML diagrams
 - **clang-tidy** - LLVM's linter, didn't like the suggestions so I didn't use it
 - **clang-format** - LLVM's formatter
+- [**comment-formula**](https://github.com/howcasperwhat/comment-formula) - LaTeX in vscode
 
 ## Commands
 
